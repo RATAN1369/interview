@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { api, setToken } from "../api";
+import { Eye, EyeOff } from "lucide-react";
 import { authStore } from "../auth";
+// const [showPassword, setShowPassword] = useState(false);
+
 
 export default function AuthPage({ defaultTab = "login" }) {
   const [tab, setTab] = useState(defaultTab); // "login" | "signup" | "forgot"
   const [signupStep, setSignupStep] = useState("form");
   const [forgotStep, setForgotStep] = useState("form");
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showSignupPassword, setShowSignupPassword] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+
 
   // states
   const [email, setEmail] = useState("");
@@ -164,14 +171,25 @@ export default function AuthPage({ defaultTab = "login" }) {
                 required
                 className="input bg-white/20 text-white placeholder-gray-300"
               />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="input bg-white/20 text-white placeholder-gray-300"
-              />
+              <div className="relative">
+                <input
+                  type={showLoginPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="input bg-white/20 text-white placeholder-gray-300 pr-10"
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300"
+                  onClick={() => setShowLoginPassword(!showLoginPassword)}
+                >
+                  {showLoginPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+
+
               <div className="flex justify-between items-center text-xs sm:text-sm text-gray-200">
                 <label>
                   <input type="checkbox" className="mr-1" /> Keep me logged in
@@ -209,14 +227,26 @@ export default function AuthPage({ defaultTab = "login" }) {
                 required
                 className="input bg-white/20 text-white placeholder-gray-300"
               />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="input bg-white/20 text-white placeholder-gray-300"
-              />
+              <div className="relative">
+                <input
+                  type={showSignupPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="input bg-white/20 text-white placeholder-gray-300 pr-10"
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300"
+                  onClick={() => setShowSignupPassword(!showSignupPassword)}
+                >
+                  {showSignupPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+
+
+
               <button className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold shadow-lg hover:opacity-90 transition">
                 Request OTP
               </button>
@@ -266,14 +296,25 @@ export default function AuthPage({ defaultTab = "login" }) {
                 required
                 className="input bg-white/20 text-white placeholder-gray-300"
               />
-              <input
-                type="password"
-                placeholder="New Password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                required
-                className="input bg-white/20 text-white placeholder-gray-300"
-              />
+              <div className="relative">
+                <input
+                  type={showForgotPassword ? "text" : "password"}
+                  placeholder="New Password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                  className="input bg-white/20 text-white placeholder-gray-300 pr-10"
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300"
+                  onClick={() => setShowForgotPassword(!showForgotPassword)}
+                >
+                  {showForgotPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+
+
               <button className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold shadow-lg hover:opacity-90 transition">
                 Reset Password
               </button>
