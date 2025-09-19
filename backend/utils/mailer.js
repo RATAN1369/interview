@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 // OTP bhejne ka helper
 export const sendOtpEmail = async (to, otp) => {
   const mailOptions = {
-    from: `"Interview App" <${process.env.SMTP_USER}>`,
+    from: `"Placement App" <${process.env.SMTP_USER}>`,
     to,
     subject: "Your OTP Code",
     text: `Your OTP is ${otp}. It expires in ${process.env.OTP_EXPIRE_MIN || 10} minutes.`,
