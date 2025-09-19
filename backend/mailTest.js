@@ -29,3 +29,4 @@ async function sendMail() {
 }
 
 sendMail();
+//this file is just to check whether smtp working or not.
