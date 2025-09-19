@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+
+@layer base {
+  body { @apply font-sans bg-gradient-to-br from-sky-50 via-indigo-50 to-fuchsia-50 text-slate-800; }
+}
+
+/* popover animation */
+@keyframes pop {
+  0% { transform: translateY(6px) scale(.98); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@layer components {
+  /* layout helpers */
+  .container-pro { @apply container max-w-7xl; }
+  .section       { @apply container-pro py-10; }
+
+  /* cards & UI atoms */
+  .card        { @apply bg-white/90 backdrop-blur rounded-2xl shadow-card ring-1 ring-slate-900/5; }
+  .card-toned  { @apply rounded-2xl ring-1 ring-slate-900/5 shadow-card bg-gradient-to-br from-white to-brand-50/60 backdrop-blur; }
+  .card-toned-hover { @apply transition hover:-translate-y-[1px] hover:ring-brand-200/80 hover:shadow-soft; }
+
+  .btn         { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 font-medium transition shadow-sm hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700; }
+  .btn-outline { @apply btn border border-slate-300 bg-white hover:bg-slate-50; }
+  .btn-ghost   { @apply btn bg-transparent hover:bg-white/60; }
+
+  .input       { @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-200; }
+  .pill        { @apply inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600; }
+
+  .hero-title  { @apply text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900; }
+  .hero-sub    { @apply mt-3 text-slate-600 text-lg; }
+
+  /* popover */
+  .pop-card      { @apply relative bg-white rounded-xl shadow-soft ring-1 ring-slate-200 p-4; }
+  .pop-panel     { @apply absolute left-0 right-0 top-full mt-2 z-20; animation: pop .16s ease-out forwards; }
+  .pop-panel-top { @apply absolute left-0 right-0 bottom-full mb-2 z-50; animation: pop .16s ease-out forwards; }
+
+  /* ===== NAVBAR (updated color + spacing + alignment) ===== */
+  /* slim colorful bar on top */
+  .nav-accent { @apply h-[3px] w-full bg-gradient-to-r from-brand-500 via-fuchsia-400 to-sky-400; }
+
+  /* glassy shell with soft brand tint */
+  .nav-shell {
+    @apply bg-gradient-to-r from-white/90 via-indigo-50/70 to-white/90
+           backdrop-blur supports-[backdrop-filter]:bg-white/70
+           border-b border-slate-200/60 shadow-sm;
+  }
+
+  /* 3-column grid → brand | tabs | actions */
+  .nav-grid   { @apply container max-w-7xl mx-auto px-4 py-3 grid grid-cols-[auto,1fr,auto] items-center gap-x-6; }
+  .nav-center { @apply flex items-center justify-center gap-4; }
+  .nav-right  { @apply flex items-center justify-end gap-3; } /* extra spacing for buttons */
+
+  /* segmented tabs */
+  .seg            { @apply inline-flex bg-slate-100 p-1 rounded-2xl; }
+  .seg-btn        { @apply px-4 py-1.5 rounded-xl text-sm transition; }
+  .seg-btn-active { @apply bg-white shadow font-medium text-slate-900; }
+  .seg-btn-idle   { @apply text-slate-600 hover:text-slate-900; }
+
+  /* src/index.css ya global.css me */
+.active-btn {
+  @apply px-4 py-2 rounded-lg bg-indigo-600 text-white;
+}
+.inactive-btn {
+  @apply px-4 py-2 rounded-lg bg-gray-100 text-gray-700;
+}
+
+}
