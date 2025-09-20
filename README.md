@@ -32,11 +32,4 @@ With **100+ active users** and experiences from **20+ companies**, this platform
 - JWT Authentication  
 - Vercel Deployment  
 
----
 
-## ⚙️ Setup & Installation
-
-### 🔹 Backend Setup
-```bash
-cd backend
-npm install
